@@ -1,0 +1,30 @@
+---
+  - name: Backup cisco device running config
+    hosts: ciscoIOS, ciscoVIOS
+    gather_facts: no
+    tasks:
+      - name: capturing running config
+        cisco.ios.ios_command:
+          commands:
+            - show running-config
+        register: config_out
+      - name: Display config
+        debug:
+          var: config_out.stdout[0]
+      - name: backup directory
+        file:
+          path: "{{playbook_dir}}/config_backup/{{inventory_hostname}}"
+          state: directory
+          mode: '0755'
+
+      - name: Gather facts
+        ansible.builtin.setup:
+
+      - name: Assign current date time to a backup file
+        ansible.builtin.set_fact:
+          current_date: "{{ansible_facts.date_time.date}}-{{ansible_facts.date_time.time}}"
+
+      - name: Copy config to a file
+        copy:
+          content: "{{config_out.stdout[0]}}"
+          dest: "{{playbook_dir}}/config_backup/{{inventory_hostname}}/{{inventory_hostname}}.config_backup-{{current_date}}.txt"
