@@ -1,0 +1,28 @@
+ansible_host: 192.168.1.101
+switchport_details:
+  - name: GigabitEthernet0/0
+    type: management
+    description: Management interface
+  - name: GigabitEthernet0/1
+    type: trunk
+    description: Uplink to core switch
+  - name: GigabitEthernet0/2
+    type: access
+    description: user port
+    vlan: 20
+  - name: GigabitEthernet0/3
+    type: access
+    description: user port
+    vlan: 30
+  - name: GigabitEthernet1/0
+    type: trunk
+    description: Uplink to Core switch
+  - name: GigabitEthernet1/1
+    type: trunk
+    description: Uplink to core switch
+  - name: GigabitEthernet1/2
+    type: trunk
+    description: Uplink to Core switch
+  - name: GigabitEthernet1/3
+    type: trunk
+    description: Uplink to core switch
