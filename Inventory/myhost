@@ -1,0 +1,27 @@
+[ciscoVIOS]
+vIOS ansible_host=192.168.1.101 ansible_network_os=ios
+[ciscoIOS]
+CSR1 ansible_host=192.168.1.104 ansible_network_os=ios
+CSR2 ansible_host=192.168.1.105 ansible_network_os=ios
+C8K1 ansible_host=192.168.1.106 ansible_network_os=ios
+[ciscoNXOS]
+NXOS1 ansible_host=192.168.1.102 ansible_network_os=nxos
+NXOS2 ansible_host=192.168.1.103 ansible_network_os=nxos
+[EOS]
+vEOS ansible_host=192.168.1.100 ansible_network_os=eos
+
+[cisco:children]
+ciscoVIOS
+ciscoIOS
+ciscoNXOS
+
+[arista:children]
+EOS
+
+[all:vars]
+
+ansible_connection=network_cli
+ansible_become=true
+ansible_become_method=enable
+ansible_user=nw_automation
+ansible_password=devnet
