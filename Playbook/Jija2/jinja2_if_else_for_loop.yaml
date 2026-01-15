@@ -1,0 +1,9 @@
+---
+  - name: Demo on jinja2 template - for loop and if elif statement
+    hosts: vIOS
+    gather_facts: false
+    tasks:
+      - name: Generate switch configuration
+        template:
+          src: switchport_config.j2
+          dest: "{{playbook_dir}}/config_files/{{inventory_hostname}}_switchport_config.cfg"
