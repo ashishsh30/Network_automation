@@ -1,0 +1,71 @@
+all:
+  children:
+    arista:
+      children:
+        EOS:
+          hosts:
+            vEOS:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.100
+              ansible_network_os: eos
+              ansible_password: devnet
+              ansible_user: nw_automation
+    cisco:
+      children:
+        ciscoIOS:
+          hosts:
+            C8K1:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.106
+              ansible_network_os: ios
+              ansible_password: devnet
+              ansible_user: nw_automation
+            CSR1:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.104
+              ansible_network_os: ios
+              ansible_password: devnet
+              ansible_user: nw_automation
+            CSR2:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.105
+              ansible_network_os: ios
+              ansible_password: devnet
+              ansible_user: nw_automation
+        ciscoNXOS:
+          hosts:
+            NXOS1:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.102
+              ansible_network_os: nxos
+              ansible_password: devnet
+              ansible_user: nw_automation
+            NXOS2:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.103
+              ansible_network_os: nxos
+              ansible_password: devnet
+              ansible_user: nw_automation
+        ciscoVIOS:
+          hosts:
+            vIOS:
+              ansible_become: 'true'
+              ansible_become_method: enable
+              ansible_connection: network_cli
+              ansible_host: 192.168.1.101
+              ansible_network_os: ios
+              ansible_password: devnet
+              ansible_user: nw_automation
+    ungrouped: {}
