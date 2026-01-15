@@ -1,6 +1,0 @@
-ansible_network_os: ios
-ansible_ssh_common_args:  >
-  -oHostkeyAlgorithms=+ssh-rsa
-  -oPubkeyAcceptedAlgorithms=+ssh-rsa
-  -oKexAlgorithms=+diffie-hellman-group14-sha1
-  -oMACs=+hmac-sha1,hmac-sha1-96
