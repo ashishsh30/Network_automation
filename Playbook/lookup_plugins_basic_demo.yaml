@@ -1,1 +1,7 @@
-
+---
+  - name: demo on Plugins basics 
+    hosts: CSR1
+    gather_facts: false
+    vars: 
+      file_contains:
+      
