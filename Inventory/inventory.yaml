@@ -1,0 +1,21 @@
+all:
+  children:
+    cisco:
+      children:
+        ciscoIOS:
+          hosts:
+           CSR1:
+           CSR2:
+           C8K1:
+        ciscoNXOS:
+          hosts:
+            NXOS1:
+            NXOS2:
+        ciscoVIOS:
+          hosts:
+            vIOS:
+    arista:
+      children:
+        EOS:
+          hosts:
+            vEOS:
