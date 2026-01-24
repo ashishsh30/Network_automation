@@ -5,5 +5,5 @@
      tasks:
        - name: Save config after modify the usernasme table 
          cisco.ios.ios_config:
-         save_when: changed
+           save_when: changed
     
