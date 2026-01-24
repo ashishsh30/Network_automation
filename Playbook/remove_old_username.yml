@@ -9,5 +9,5 @@
             - name: nw_automation
             - name: "{{new_username}}"
           purge: true
-          save_when: always
+          
 
