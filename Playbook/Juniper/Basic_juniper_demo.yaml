@@ -1,0 +1,10 @@
+---
+  -  name: Basic Juniper ansible demo
+     hosts: MX 
+     gather_facts: no
+     tasks:
+       -  name: Pulling show version 
+          junipernetworks.junos_junos.commands:
+          
+    
+  
