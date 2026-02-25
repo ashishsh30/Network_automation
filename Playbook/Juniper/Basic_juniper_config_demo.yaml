@@ -1,0 +1,21 @@
+---
+  -  name: Basic Juniper ansible demo
+     hosts: MX 
+     gather_facts: no
+     vars:
+      anisble_connection: netconf
+      ansible_network_os: junos
+     tasks:
+       -  name: Changing hostname 
+          junipernetworks.junos.junos_config:
+            lines:
+              -  set system hostname Test
+          save: modified
+
+       - name: Display output 
+         debug:
+           msg: output
+                
+          
+    
+  
