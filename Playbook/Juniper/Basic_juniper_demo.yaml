@@ -4,7 +4,15 @@
      gather_facts: no
      tasks:
        -  name: Pulling show version 
-          junipernetworks.junos_junos.commands:
+          junipernetworks.junos.junos_command:
+            commands:
+              -  show version
+           register: output 
+
+       - name: Display output 
+         debug:
+           msg: output
+                
           
     
   
