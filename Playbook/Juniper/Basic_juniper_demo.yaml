@@ -7,11 +7,12 @@
           junipernetworks.junos.junos_command:
             commands:
               -  show version
+            display: text
           register: output 
 
        - name: Display output 
          debug:
-           msg: output
+           msg: "{{output}}"
                 
           
     
