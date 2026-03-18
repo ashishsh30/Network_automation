@@ -1,19 +1,22 @@
 ---
   -  name: Basic Juniper ansible demo
-     hosts: MX 
+     hosts: MX
      gather_facts: no
+     vars:
+      ansible_connection: netconf
+      ansible_network_os: junipernetworks.junos.junos
      tasks:
-       -  name: Pulling show version 
+       -  name: Pulling show version
           junipernetworks.junos.junos_command:
             commands:
               -  show version
             display: text
-          register: output 
+          register: output
 
-       - name: Display output 
+       - name: Display output
          debug:
            msg: "{{output}}"
-                
+
           
     
   
