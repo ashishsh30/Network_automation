@@ -9,10 +9,10 @@
     tasks:
       - name: Render the template to a temporary file
         template:
-          src: ../templates/Juniper_device_basic_configuration.j2
-          dest: "../config_backup/{{inventory_hostname}}_rendered_config.txt"
+          src: {{playbook_dir}}../templates/Juniper_device_basic_configuration.j2
+          dest: "{{playbook_dir}}../config_backup/{{inventory_hostname}}_rendered_config.txt"
 
       - name: Load the rendered config to juniper device
         junipernetworks.junos.junos_config:
-          src:   "../config_backup/MX_rendered_config.txt"
+          src:   "{{playbook_dir}}../config_backup/MX_rendered_config.txt"
           comment: Push render config to device
