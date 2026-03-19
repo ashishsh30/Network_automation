@@ -1,0 +1,5 @@
+ansible_host: 192.168.1.114
+interface_details:
+  - name: ge-0/0/2
+    desc: Connected to dump
+    ip_address: 20.20.20.1/24
