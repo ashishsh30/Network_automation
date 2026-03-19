@@ -7,7 +7,7 @@
       ansible_network_os: junipernetworks.junos.junos
 
     tasks:
-    - name: backup directory
+      - name: backup directory
         file:
           path: "{{playbook_dir}}/config_backup1/"
           state: directory
