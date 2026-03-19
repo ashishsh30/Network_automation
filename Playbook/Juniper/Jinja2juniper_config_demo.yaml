@@ -9,15 +9,15 @@
     tasks:
       - name: backup directory
         file:
-          path: "{{playbook_dir}}/config_backup1/"
+          path: "{{playbook_dir}}/config_backup1/{{inventory_hostname}}"
           state: directory
           mode: '0755'
       - name: Render the template to a temporary file
         template:
           src: ../templates/Juniper_device_basic_configuration.j2
-          dest: "{{playbook_dir}}/config_backup1/{{inventory_hostname}}_rendered_config.txt"
+          dest: "{{playbook_dir}}/config_backup1/{{inventory_hostname/{{inventory_hostname}}_rendered_config.txt"
 
       - name: Load the rendered config to juniper device
         junipernetworks.junos.junos_config:
-          src:   "{{playbook_dir}}/config_backup1/MX_rendered_config.txt"
+          src:   "{{playbook_dir}}/config_backup1/{{inventory_hostname}}/MX_rendered_config.txt"
           comment: Push render config to device
