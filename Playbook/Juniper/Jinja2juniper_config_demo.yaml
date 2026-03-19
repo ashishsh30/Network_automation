@@ -1,0 +1,18 @@
+---
+  - name: Demo on config and jinjaj2 template
+    hosts: MX
+    gather_facts: no
+    vars:
+      ansible_connection: netconf
+      ansible_network_os: junipernetworks.junos.junos
+
+    tasks:
+      - name: Render the template to a temporary file
+        template:
+          src: /home/automation/nw_automation/playbook/templates/Juniper_device_basic_configuration.j2
+          dest: "{{playbook_dir}}/config_backup/{{inventory_hostname}}_rendered_config.txt"
+
+      - name: Load the rendered config to juniper device
+        junipernetworks.junos.junos_config:
+          src:   /home/automation/nw_automation/playbook/Juniper/config_backup/MX_rendered_config.txt
+          comment: Push render config to device
