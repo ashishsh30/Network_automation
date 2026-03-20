@@ -21,6 +21,5 @@
 
       - name: Load the rendered config to juniper device
         junipernetworks.junos.junos_config:
-          src:   "{{playbook_dir}}/../config_back1/{{inventory_hostname}}/MX_rendered_config.txt"
-          format: set
+          src:   "{{playbook_dir}}/../config_back1/{{inventory_hostname}}/MX_rendered_config.txt
           comment: Push render config to device
