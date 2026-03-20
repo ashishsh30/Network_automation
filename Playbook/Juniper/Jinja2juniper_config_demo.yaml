@@ -19,6 +19,12 @@
           dest: "{{playbook_dir}}/../config_back1/{{inventory_hostname}}/{{inventory_hostname}}_rendered_config.txt"
         delegate_to: localhost
 
+      - name: DEBUG - Show hidden characters
+        command: "cat -A {{ playbook_dir }}/../config_back1/{{ inventory_hostname }}/{{ inventory_hostname }}_rendered_config.txt"
+        register: hidden_chars
+        delegate_to: localhost
+      - debug:
+          var: hidden_chars.stdout_lines
       - name: Load the rendered config to juniper device
         junipernetworks.junos.junos_config:
           src: "{{ playbook_dir }}/../config_back1/{{ inventory_hostname }}/{{ inventory_hostname }}_rendered_config.txt"
