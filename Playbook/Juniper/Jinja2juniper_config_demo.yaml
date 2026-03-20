@@ -17,6 +17,7 @@
         template:
           src: ../templates/Juniper_device_basic_configuration.j2
           dest: "{{playbook_dir}}/../config_back1/{{inventory_hostname}}/{{inventory_hostname}}_rendered_config.txt"
+          src_format: set
         delegate_to: localhost
 
       - name: Load the rendered config to juniper device
