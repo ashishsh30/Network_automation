@@ -21,6 +21,7 @@
 
       - name: Load the rendered config to juniper device
         junipernetworks.junos.junos_config:
-          src:   "{{playbook_dir}}/../config_back1/{{inventory_hostname}}/MX_rendered_config.txt"
-          src_format: set 
-          comment: Push render config to device
+          src: "{{ playbook_dir }}/../config_back1/{{ inventory_hostname }}/{{ inventory_hostname }}_rendered_config.txt"
+          src_format: set  # This is correct for 'set' commands
+          update: merge    # Tells Junos to add these lines to existing config
+          comment: "Pushing clean config"
