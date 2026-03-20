@@ -1,13 +1,11 @@
 set system host-name MX
 set interfaces ge-0/0/1 description " Test"
-set interfaces ge-0/0/1 unit 0 family inet address 10.10.10.1/24
-
+set interfaces ge-0/0/1 unit 0 family inet address 10.10.10.4/24
 {% if dns_server is defined %}
 set system name-server {{ dns_server }}
 {% else %}
 set system name-server 8.8.8.8
 {% endif %}
-
 {% for ntp_server in ntp_servers %}
 set system ntp server {{ntp_server}}
 {% endfor %}
