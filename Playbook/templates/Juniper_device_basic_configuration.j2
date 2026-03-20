@@ -6,6 +6,7 @@ set system name-server {{ dns_server }}
 {% else %}
 set system name-server 8.8.8.8
 {% endif %}
-{% for ntp_server in ntp_servers if ntp_server | length > 1 -%}
-set system ntp server {{ ntp_server | trim }}
-{% endfor -%}
+{% for ntp_server in ntp_servers %}
+set system ntp server {{ntp_server}}
+{% endfor %}
+
