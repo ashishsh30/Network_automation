@@ -1,0 +1,44 @@
+name: Validate Ansible Playbooks & Templates
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible-lint ansible yamllint jinja2-cli
+          ansible-galaxy collection install -r requirements.yml
+
+      - name: Lint YAML Files
+        run: |
+          yamllint .
+
+      - name: Check Playbook Syntax
+        run: |
+          ansible-playbook playbooks/site_deployment.yml --syntax-check
+
+      - name: Validate Jinja2 Template Syntax
+        run: |
+          python -c "
+          import jinja2
+          env = jinja2.Environment()
+          with open('templates/aruba_central_group_vars.j2') as f:
+              env.parse(f.read())
+          print('Jinja2 template syntax is valid!')
+          "
