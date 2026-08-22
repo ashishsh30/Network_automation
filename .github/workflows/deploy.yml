@@ -1,1 +1,31 @@
+name: Deploy Group Config to Aruba Central
 
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - 'templates/**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Execute Deploy Script
+        env:
+          CENTRAL_CLIENT_ID: ${{ secrets.CENTRAL_CLIENT_ID }}
+          CENTRAL_CLIENT_SECRET: ${{ secrets.CENTRAL_CLIENT_SECRET }}
+          CENTRAL_REFRESH_TOKEN: ${{ secrets.CENTRAL_REFRESH_TOKEN }}
+          CENTRAL_API_URL: ${{ secrets.CENTRAL_API_URL }}
+          CENTRAL_GROUP_NAME: ${{ secrets.CENTRAL_GROUP_NAME }}
+        run: python push_config.py
