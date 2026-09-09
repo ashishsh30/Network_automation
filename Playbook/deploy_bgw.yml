@@ -1,34 +1,66 @@
 ---
-- name: Deploy Aruba Branch Gateway Configuration to Aruba Central
+- name: Authenticate with Aruba Central, Get Group Info, and Deploy BGW
   hosts: localhost
   gather_facts: false
 
   vars:
-    # Aruba Central API Base URL (Region dependent, e.g., na-central.arubanetworks.com)
-    aruba_central_url: "https://apigw-us.central.arubanetworks.com"
-    # Token or credentials stored securely in AWX Credentials or passed via environment
-    aruba_token: "{{ lookup('env', 'ARUBA_CENTRAL_TOKEN') | default(aruba_api_token, true) }}"
+    # Aruba Central API Gateway URL (adjust based on your region: US, EU, AP, etc.)
+    aruba_base_url: "https://apigw-us.central.arubanetworks.com"
+    
+    # Credentials passed securely from AWX Credentials or Extra Vars
+    client_id: "{{ lookup('env', 'ARUBA_CLIENT_ID') | default(aruba_client_id, true) }}"
+    client_secret: "{{ lookup('env', 'ARUBA_CLIENT_SECRET') | default(aruba_client_secret, true) }}"
+    access_token: "{{ lookup('env', 'ARUBA_ACCESS_TOKEN') | default(aruba_access_token, true) }}"
+    customer_id: "{{ lookup('env', 'ARUBA_CUSTOMER_ID') | default(aruba_customer_id, true) }}"
+    target_group: "default" # Change to your Aruba Central target group name
 
   tasks:
-    - name: Display incoming device serial and hostname
-      ansible.builtin.debug:
-        msg: "Processing Gateway Host: {{ _sys_host }} (Serial: {{ _sys_serial }})"
-
-    - name: Push Device Variables to Aruba Central API
+    - name: Step 1 - Obtain / Refresh Access Token from Aruba Central
       ansible.builtin.uri:
-        url: "{{ aruba_central_url }}/configuration/v1/devices/variables/{{ _sys_serial }}"
+        url: "{{ aruba_base_url }%s" % ("/oauth/token?grant_type=refresh_token&client_id=" + client_id + "&client_secret=" + client_secret + "&refresh_token=" + access_token)
+        method: "POST"
+        return_content: true
+      register: oauth_response
+      when: access_token is defined and access_token != ""
+
+    - name: Set Active Token Fact
+      ansible.builtin.set_fact:
+        active_bearer_token: "{{ oauth_response.json.access_token | default(access_token) }}"
+
+    - name: Step 2 - Get Aruba Central Group and Device Info
+      ansible.builtin.uri:
+        url: "{{ aruba_base_url }}/configuration/v2/groups/{{ target_group }}"
+        method: "GET"
+        headers:
+          Authorization: "Bearer {{ active_bearer_token }}"
+        status_code: [200, 404]
+      register: group_info_response
+
+    - name: Display Group Info
+      ansible.builtin.debug:
+        msg: "Group Status: {{ group_info_response.status }} - Info retrieved for group {{ target_group }}"
+
+    - name: Step 3 - Push Portal Device Variables to Aruba Central
+      ansible.builtin.uri:
+        url: "{{ aruba_base_url }}/configuration/v1/devices/variables/{{ _sys_serial }}"
         method: "PUT"
         headers:
-          Authorization: "Bearer {{ aruba_token }}"
+          Authorization: "Bearer {{ active_bearer_token }}"
           Content-Type: "application/json"
         body_format: json
         body:
-          # Mapping the variables sent from your portal
           variables:
             hostname: "{{ _sys_host }}"
+            admin_user: "{{ admin_us }}"
+            admin_password: "{{ admin_pa }}"
             timezone: "{{ timezone }}"
             ntp_primary: "{{ ntp_prima }}"
             ntp_secondary: "{{ ntp_secor }}"
+            wan_vlan: "{{ wan_vlan_ }}"
+            lan_vlan: "{{ lan_vlan_i }}"
+            guest_vlan: "{{ guest_vlai }}"
+            wan_port: "{{ wan_port }}"
+            lan_port: "{{ lan_port }}"
             wan_ip: "{{ wan_ip }}"
             wan_mask: "{{ wan_mask }}"
             wan_gateway: "{{ wan_gatew }}"
@@ -38,8 +70,8 @@
             dns_primary: "{{ dns_prima }}"
             dns_secondary: "{{ dns_secor }}"
         status_code: [200, 201]
-      register: central_response
+      register: central_push_response
 
-    - name: Verify API Push Success
+    - name: Verify Final Deployment
       ansible.builtin.debug:
-        msg: "Successfully updated configuration variables in Aruba Central for {{ _sys_serial }}"
+        msg: "Successfully pushed variables for serial {{ _sys_serial }} to Aruba Central!"
