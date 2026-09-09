@@ -1,0 +1,45 @@
+---
+- name: Deploy Aruba Branch Gateway Configuration to Aruba Central
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    # Aruba Central API Base URL (Region dependent, e.g., na-central.arubanetworks.com)
+    aruba_central_url: "https://apigw-us.central.arubanetworks.com"
+    # Token or credentials stored securely in AWX Credentials or passed via environment
+    aruba_token: "{{ lookup('env', 'ARUBA_CENTRAL_TOKEN') | default(aruba_api_token, true) }}"
+
+  tasks:
+    - name: Display incoming device serial and hostname
+      ansible.builtin.debug:
+        msg: "Processing Gateway Host: {{ _sys_host }} (Serial: {{ _sys_serial }})"
+
+    - name: Push Device Variables to Aruba Central API
+      ansible.builtin.uri:
+        url: "{{ aruba_central_url }}/configuration/v1/devices/variables/{{ _sys_serial }}"
+        method: "PUT"
+        headers:
+          Authorization: "Bearer {{ aruba_token }}"
+          Content-Type: "application/json"
+        body_format: json
+        body:
+          # Mapping the variables sent from your portal
+          variables:
+            hostname: "{{ _sys_host }}"
+            timezone: "{{ timezone }}"
+            ntp_primary: "{{ ntp_prima }}"
+            ntp_secondary: "{{ ntp_secor }}"
+            wan_ip: "{{ wan_ip }}"
+            wan_mask: "{{ wan_mask }}"
+            wan_gateway: "{{ wan_gatew }}"
+            lan_gateway: "{{ lan_gatew }}"
+            lan_network: "{{ lan_netwo }}"
+            lan_netmask: "{{ lan_netma }}"
+            dns_primary: "{{ dns_prima }}"
+            dns_secondary: "{{ dns_secor }}"
+        status_code: [200, 201]
+      register: central_response
+
+    - name: Verify API Push Success
+      ansible.builtin.debug:
+        msg: "Successfully updated configuration variables in Aruba Central for {{ _sys_serial }}"
