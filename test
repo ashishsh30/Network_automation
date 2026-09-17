@@ -1,0 +1,1014 @@
+McD00028_SW1# sh run
+
+Running configuration:
+
+; JL262A Configuration Editor; Created on release #WC.16.09.0021
+; Ver #14:27.6f.f8.1d.9b.3f.bf.bb.ef.7c.59.fc.6b.fb.9f.fc.ff.ff.37.ef:04
+hostname "McD00028_SW1"
+module 1 type jl262a
+console idle-timeout 300
+console idle-timeout serial-usb 300
+dhcp-snooping
+dhcp-snooping vlan 410 420 430 450-451 460 490-494 4081-4082
+banner exec "***This system is restricted to AT&T authorized users for business purposes.\n***Unauthorized
+ access is a violation of the law.\n***This service may be monitored for administrative and security
+ reasons.\n***By proceeding, you consent to this monitoring\n"
+logging 216.12.248.76 udp 1516
+logging facility local0
+logging severity info
+logging notify running-config-change
+logging origin-id hostname
+include-credentials
+password manager user-name "cdw" sha256 "188a2cd138acaa200d05ccfb32dc91254289339bac173f609b7ccf6ff1beda87"
+password non-plaintext-sha256
+radius-server host 216.12.232.243 key "GFWp&gE6@f@%"
+radius-server host 216.12.232.243 dyn-authorization
+radius-server host 216.12.248.33 key "Av%W94#5o)vC"
+timesync sntp
+sntp unicast
+sntp server priority 1 216.12.230.254
+sntp server priority 2 216.12.243.109
+no telnet-server
+ip arp-age 5
+ip authorized-managers 100.123.86.112 255.255.255.240 access manager
+ip authorized-managers 127.0.0.0 255.0.0.0 access manager access-method ssh
+ip authorized-managers 216.12.232.156 255.255.255.255 access manager
+ip authorized-managers 216.12.248.23 255.255.255.255 access manager
+ip authorized-managers 216.12.248.22 255.255.255.255 access manager
+ip authorized-managers 216.12.232.157 255.255.255.255 access manager
+ip default-gateway 100.123.86.113
+ip dns server-address priority 1 216.12.255.8
+ip dns server-address priority 2 216.12.254.250
+ip client-tracker
+ip client-tracker probe-delay 300
+interface 1
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 2
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 3
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 4
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 5
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 6
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 7
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 8
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 9
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 10
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 11
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 12
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 13
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 14
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 15
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 16
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 17
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 18
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 19
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 20
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 21
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 22
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 23
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 24
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 25
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 26
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 27
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 28
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 29
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 30
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 31
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 32
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 33
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 34
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 35
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 36
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 37
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 38
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 39
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 40
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 41
+   dhcp-snooping trust
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 42
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 43
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 44
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 45
+   dhcp-snooping trust
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 46
+   dhcp-snooping trust
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 47
+   dhcp-snooping trust
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 48
+   dhcp-snooping trust
+   name "User-Managed"
+   poe-lldp-detect enabled
+   exit
+interface 49
+   dhcp-snooping trust
+   name "User-Managed"
+   exit
+interface 50
+   dhcp-snooping trust
+   name "User-Managed"
+   exit
+interface 51
+   dhcp-snooping trust
+   name "User-Managed"
+   exit
+interface 52
+   dhcp-snooping trust
+   name "User-Managed"
+   exit
+snmp-server location "PROD-MCD-SWITCH-22.14.0-20220627"
+snmpv3 engineid "00:00:00:0b:00:00:d0:67:26:33:8b:00"
+tls application cloud lowest-version tls1.2
+tls application web-ssl lowest-version tls1.2
+tls application openflow lowest-version tls1.2
+tls application syslog lowest-version tls1.2
+tls application tr69 lowest-version tls1.2
+aaa server-group radius "CPW" host 216.12.248.33
+aaa server-group radius "mcd-cluster" host 216.12.232.243
+aaa accounting update periodic 15
+aaa accounting commands interim-update radius server-group "CPW"
+aaa accounting exec start-stop radius server-group "CPW"
+aaa accounting network start-stop radius server-group "CPW"
+aaa accounting system start-stop radius server-group "CPW"
+aaa accounting session-id common
+aaa authentication login privilege-mode
+aaa authentication console login radius server-group "CPW" local
+aaa authentication telnet login radius server-group "CPW"
+aaa authentication telnet enable radius
+aaa authentication ssh login radius server-group "CPW" local
+aaa authentication port-access eap-radius server-group "mcd-cluster" cached-reauth
+aaa authentication mac-based peap-mschapv2 server-group "mcd-cluster" cached-reauth
+aaa authentication allow-vlan tagged
+aaa port-access authenticator 5 reauth-period 28800
+aaa port-access authenticator 5 client-limit 3
+aaa port-access authenticator 6 reauth-period 28800
+aaa port-access authenticator 6 client-limit 3
+aaa port-access authenticator 7 reauth-period 28800
+aaa port-access authenticator 7 client-limit 3
+aaa port-access authenticator 8 reauth-period 28800
+aaa port-access authenticator 8 client-limit 3
+aaa port-access authenticator 9 reauth-period 28800
+aaa port-access authenticator 9 client-limit 3
+aaa port-access authenticator 10 reauth-period 28800
+aaa port-access authenticator 10 client-limit 3
+aaa port-access authenticator 11 reauth-period 28800
+aaa port-access authenticator 11 client-limit 3
+aaa port-access authenticator 12 reauth-period 28800
+aaa port-access authenticator 12 client-limit 3
+aaa port-access authenticator 13 reauth-period 28800
+aaa port-access authenticator 13 client-limit 3
+aaa port-access authenticator 14 reauth-period 28800
+aaa port-access authenticator 14 client-limit 3
+aaa port-access authenticator 15 reauth-period 28800
+aaa port-access authenticator 15 client-limit 3
+aaa port-access authenticator 16 reauth-period 28800
+aaa port-access authenticator 16 client-limit 3
+aaa port-access authenticator 17 reauth-period 28800
+aaa port-access authenticator 17 client-limit 3
+aaa port-access authenticator 18 reauth-period 28800
+aaa port-access authenticator 18 client-limit 3
+aaa port-access authenticator 19 reauth-period 28800
+aaa port-access authenticator 19 client-limit 3
+aaa port-access authenticator 20 reauth-period 28800
+aaa port-access authenticator 20 client-limit 3
+aaa port-access authenticator 21 reauth-period 28800
+aaa port-access authenticator 21 client-limit 3
+aaa port-access authenticator 22 reauth-period 28800
+aaa port-access authenticator 22 client-limit 3
+aaa port-access authenticator 23 reauth-period 28800
+aaa port-access authenticator 23 client-limit 3
+aaa port-access authenticator 24 reauth-period 28800
+aaa port-access authenticator 24 client-limit 3
+aaa port-access authenticator 25 reauth-period 28800
+aaa port-access authenticator 25 client-limit 3
+aaa port-access authenticator 26 reauth-period 28800
+aaa port-access authenticator 26 client-limit 3
+aaa port-access authenticator 27 reauth-period 28800
+aaa port-access authenticator 27 client-limit 3
+aaa port-access authenticator 28 reauth-period 28800
+aaa port-access authenticator 28 client-limit 3
+aaa port-access authenticator 29 reauth-period 28800
+aaa port-access authenticator 29 client-limit 3
+aaa port-access authenticator 30 reauth-period 28800
+aaa port-access authenticator 30 client-limit 3
+aaa port-access authenticator 31 reauth-period 28800
+aaa port-access authenticator 31 client-limit 3
+aaa port-access authenticator 32 reauth-period 28800
+aaa port-access authenticator 32 client-limit 3
+aaa port-access authenticator 33 reauth-period 28800
+aaa port-access authenticator 33 client-limit 3
+aaa port-access authenticator 34 reauth-period 28800
+aaa port-access authenticator 34 client-limit 3
+aaa port-access authenticator 35 reauth-period 28800
+aaa port-access authenticator 35 client-limit 3
+aaa port-access authenticator 36 reauth-period 28800
+aaa port-access authenticator 36 client-limit 3
+aaa port-access authenticator 37 reauth-period 28800
+aaa port-access authenticator 37 client-limit 3
+aaa port-access authenticator 38 reauth-period 28800
+aaa port-access authenticator 38 client-limit 3
+aaa port-access authenticator 39 reauth-period 28800
+aaa port-access authenticator 39 client-limit 3
+aaa port-access authenticator 40 reauth-period 28800
+aaa port-access authenticator 40 client-limit 3
+aaa port-access authenticator cached-reauth-delay 3600
+aaa port-access authenticator active
+aaa port-access mac-based 5 addr-limit 3
+aaa port-access mac-based 5 unauth-vid 490
+aaa port-access mac-based 5 cached-reauth-period 288000
+aaa port-access mac-based 6 addr-limit 3
+aaa port-access mac-based 6 unauth-vid 490
+aaa port-access mac-based 6 cached-reauth-period 288000
+aaa port-access mac-based 7 addr-limit 3
+aaa port-access mac-based 7 unauth-vid 490
+aaa port-access mac-based 7 cached-reauth-period 288000
+aaa port-access mac-based 8 addr-limit 3
+aaa port-access mac-based 8 unauth-vid 490
+aaa port-access mac-based 8 cached-reauth-period 288000
+aaa port-access mac-based 9 addr-limit 3
+aaa port-access mac-based 9 unauth-vid 490
+aaa port-access mac-based 9 cached-reauth-period 288000
+aaa port-access mac-based 10 addr-limit 3
+aaa port-access mac-based 10 unauth-vid 490
+aaa port-access mac-based 10 cached-reauth-period 288000
+aaa port-access mac-based 11 addr-limit 3
+aaa port-access mac-based 11 unauth-vid 490
+aaa port-access mac-based 11 cached-reauth-period 288000
+aaa port-access mac-based 12 addr-limit 3
+aaa port-access mac-based 12 unauth-vid 490
+aaa port-access mac-based 12 cached-reauth-period 288000
+aaa port-access mac-based 13 addr-limit 3
+aaa port-access mac-based 13 unauth-vid 490
+aaa port-access mac-based 13 cached-reauth-period 288000
+aaa port-access mac-based 14 addr-limit 3
+aaa port-access mac-based 14 unauth-vid 490
+aaa port-access mac-based 14 cached-reauth-period 288000
+aaa port-access mac-based 15 addr-limit 3
+aaa port-access mac-based 15 unauth-vid 490
+aaa port-access mac-based 15 cached-reauth-period 288000
+aaa port-access mac-based 16 addr-limit 3
+aaa port-access mac-based 16 unauth-vid 490
+aaa port-access mac-based 16 cached-reauth-period 288000
+aaa port-access mac-based 17 addr-limit 3
+aaa port-access mac-based 17 unauth-vid 490
+aaa port-access mac-based 17 cached-reauth-period 288000
+aaa port-access mac-based 18 addr-limit 3
+aaa port-access mac-based 18 unauth-vid 490
+aaa port-access mac-based 18 cached-reauth-period 288000
+aaa port-access mac-based 19 addr-limit 3
+aaa port-access mac-based 19 unauth-vid 490
+aaa port-access mac-based 19 cached-reauth-period 288000
+aaa port-access mac-based 20 addr-limit 3
+aaa port-access mac-based 20 unauth-vid 490
+aaa port-access mac-based 20 cached-reauth-period 288000
+aaa port-access mac-based 21 addr-limit 3
+aaa port-access mac-based 21 unauth-vid 490
+aaa port-access mac-based 21 cached-reauth-period 288000
+aaa port-access mac-based 22 addr-limit 3
+aaa port-access mac-based 22 unauth-vid 490
+aaa port-access mac-based 22 cached-reauth-period 288000
+aaa port-access mac-based 23 addr-limit 3
+aaa port-access mac-based 23 unauth-vid 490
+aaa port-access mac-based 23 cached-reauth-period 288000
+aaa port-access mac-based 24 addr-limit 3
+aaa port-access mac-based 24 unauth-vid 490
+aaa port-access mac-based 24 cached-reauth-period 288000
+aaa port-access mac-based 25 addr-limit 3
+aaa port-access mac-based 25 unauth-vid 490
+aaa port-access mac-based 25 cached-reauth-period 288000
+aaa port-access mac-based 26 addr-limit 3
+aaa port-access mac-based 26 unauth-vid 490
+aaa port-access mac-based 26 cached-reauth-period 288000
+aaa port-access mac-based 27 addr-limit 3
+aaa port-access mac-based 27 unauth-vid 490
+aaa port-access mac-based 27 cached-reauth-period 288000
+aaa port-access mac-based 28 addr-limit 3
+aaa port-access mac-based 28 unauth-vid 490
+aaa port-access mac-based 28 cached-reauth-period 288000
+aaa port-access mac-based 29 addr-limit 3
+aaa port-access mac-based 29 unauth-vid 490
+aaa port-access mac-based 29 cached-reauth-period 288000
+aaa port-access mac-based 30 addr-limit 3
+aaa port-access mac-based 30 unauth-vid 490
+aaa port-access mac-based 30 cached-reauth-period 288000
+aaa port-access mac-based 31 addr-limit 3
+aaa port-access mac-based 31 unauth-vid 490
+aaa port-access mac-based 31 cached-reauth-period 288000
+aaa port-access mac-based 32 addr-limit 3
+aaa port-access mac-based 32 unauth-vid 490
+aaa port-access mac-based 32 cached-reauth-period 288000
+aaa port-access mac-based 33 addr-limit 3
+aaa port-access mac-based 33 unauth-vid 490
+aaa port-access mac-based 33 cached-reauth-period 288000
+aaa port-access mac-based 34 addr-limit 3
+aaa port-access mac-based 34 unauth-vid 490
+aaa port-access mac-based 34 cached-reauth-period 288000
+aaa port-access mac-based 35 addr-limit 3
+aaa port-access mac-based 35 unauth-vid 490
+aaa port-access mac-based 35 cached-reauth-period 288000
+aaa port-access mac-based 36 addr-limit 3
+aaa port-access mac-based 36 unauth-vid 490
+aaa port-access mac-based 36 cached-reauth-period 288000
+aaa port-access mac-based 37 addr-limit 3
+aaa port-access mac-based 37 unauth-vid 490
+aaa port-access mac-based 37 cached-reauth-period 288000
+aaa port-access mac-based 38 addr-limit 3
+aaa port-access mac-based 38 unauth-vid 490
+aaa port-access mac-based 38 cached-reauth-period 288000
+aaa port-access mac-based 39 addr-limit 3
+aaa port-access mac-based 39 unauth-vid 490
+aaa port-access mac-based 39 cached-reauth-period 288000
+aaa port-access mac-based 40 addr-limit 3
+aaa port-access mac-based 40 unauth-vid 490
+aaa port-access mac-based 40 cached-reauth-period 288000
+aaa port-access local-mac mac-group "430-DMBs"
+   mac-oui 00012e
+   mac-oui 0001c0
+   exit
+aaa port-access local-mac mac-group "420-HHOTs"
+   mac-oui 0026c6
+   mac-oui 14abc5
+   mac-oui 185e0f
+   mac-oui 606720
+   exit
+aaa port-access local-mac mac-group "410-Servers"
+   mac-oui 000129
+   mac-oui 000c29
+   mac-oui 001517
+   mac-oui 00155d
+   mac-oui 001bd3
+   mac-oui 001e67
+   mac-oui 006072
+   mac-oui 0060ef
+   mac-oui 008045
+   mac-oui 008064
+   mac-oui 00807d
+   mac-oui 0080f0
+   mac-oui 0090e8
+   mac-oui 080023
+   mac-oui 109836
+   mac-oui 28107b
+   mac-oui 300ed5
+   mac-oui 4ccc6a
+   mac-oui 509a4c
+   mac-oui 6805ca
+   mac-oui 6c0b84
+   mac-oui 7cd30a
+   mac-oui 847beb
+   mac-oui a81374
+   mac-oui b0c554
+   mac-oui bcc342
+   mac-oui d89ef3
+   mac-oui d8c497
+   mac-oui e06995
+   mac-oui f48e38
+   exit
+aaa port-access local-mac mac-group "410-POS-MAC-1"
+   exit
+aaa port-access local-mac mac-group "410-POS-OUI-1"
+   mac-oui 000b47
+   mac-oui 00190f
+   mac-oui 001fd8
+   mac-oui 003005
+   mac-oui 0030d6
+   mac-oui 004e01
+   mac-oui 0068eb
+   mac-oui 00804c
+   mac-oui 040e3c
+   mac-oui 047bcb
+   mac-oui 14cb19
+   mac-oui 20c6eb
+   mac-oui 3024a9
+   mac-oui 3822e2
+   mac-oui 3ce1a1
+   mac-oui 448a5b
+   mac-oui 448e12
+   mac-oui 449160
+   mac-oui 489ebd
+   mac-oui 50af73
+   mac-oui 64c901
+   mac-oui 9c7beb
+   mac-oui 9c7bef
+   mac-oui a46011
+   mac-oui b4a9fc
+   mac-oui b88584
+   mac-oui c45444
+   mac-oui c46516
+   mac-oui e0be03
+   mac-oui f8b46a
+   exit
+aaa port-access local-mac mac-group "410-POS-OUI-2"
+   mac-oui 000667
+   mac-oui 00c0b7
+   mac-oui 105107
+   mac-oui 282986
+   mac-oui 286b35
+   mac-oui 2c58b9
+   mac-oui 508140
+   mac-oui 644ed7
+   mac-oui 6c02e0
+   mac-oui 78af08
+   mac-oui 7c5758
+   mac-oui 842ae0
+   mac-oui 842afd
+   mac-oui 843a5b
+   mac-oui 9c5a44
+   mac-oui a41cb4
+   mac-oui ac5afc
+   mac-oui b0227a
+   mac-oui b05cda
+   mac-oui bce92f
+   mac-oui c4d0e3
+   mac-oui ca0000
+   mac-oui cc483a
+   mac-oui d42dc5
+   mac-oui e0c264
+   mac-oui e805dc
+   mac-oui e88088
+   mac-oui e8d8d1
+   mac-oui f46d3f
+   mac-oui f80dac
+   exit
+aaa port-access local-mac mac-group "410-Regs-PEDS"
+   mac-oui 000192
+   mac-oui 000732
+   mac-oui 000b4f
+   mac-oui 000bab
+   mac-oui 0010c6
+   mac-oui 001641
+   mac-oui 001a6b
+   mac-oui 001e37
+   mac-oui 002186
+   mac-oui 002324
+   mac-oui 00247e
+   mac-oui 0040b3
+   mac-oui 2c59e5
+   mac-oui 2c600c
+   mac-oui 402cf4
+   mac-oui 54ab3a
+   mac-oui 60c798
+   mac-oui 6c4b90
+   mac-oui 705a0f
+   mac-oui 70f395
+   mac-oui a08cfd
+   mac-oui a0b3cd
+   mac-oui a0d3c1
+   mac-oui a81e84
+   mac-oui d0bf9c
+   mac-oui d8cb8a
+   mac-oui e04f43
+   mac-oui ec8eb5
+   mac-oui fc15b4
+   mac-oui fc3fdb
+   exit
+aaa port-access local-mac mac-group "490-untrusted"
+   exit
+aaa port-access local-mac mac-group "410-00028-133593"
+   mac-addr 000bab-78be70
+   mac-addr 000bab-78ca34
+   mac-addr 00155d-003300
+   mac-addr 00155d-003301
+   mac-addr 002324-c56a95
+   mac-addr 002324-c8f823
+   mac-addr 002324-c8f82d
+   mac-addr 002324-ca6066
+   mac-addr 002324-ce1a38
+   mac-addr 002324-d00bf6
+   mac-addr 008064-c48423
+   mac-addr 008064-d6fff1
+   mac-addr 008064-d7000d
+   mac-addr 008064-d7015e
+   mac-addr 008064-fb064b
+   mac-addr 00807d-bcf57d
+   mac-addr 080023-45eb9c
+   mac-addr 080023-6cd615
+   mac-addr 5820b1-5228dd
+   mac-addr 60c798-8bf7f6
+   mac-addr 60c798-8c078c
+   mac-addr 60c798-8c078f
+   mac-addr 60c798-8e0116
+   mac-addr 6805ca-3675d4
+   mac-addr 6c0b84-43f1bf
+   exit
+aaa port-access local-mac mac-group "410-00028-227939"
+   mac-addr 0040b3-8fc78d
+   exit
+aaa port-access local-mac mac-group "430-00028-133592"
+   mac-addr 0001c0-11f912
+   mac-addr 0001c0-12b14b
+   mac-addr 0001c0-15cf59
+   mac-addr 0001c0-15cf63
+   mac-addr 0001c0-15cf81
+   exit
+aaa port-access local-mac mac-group "490-00028-133586"
+   exit
+aaa port-access local-mac mac-group "492-IoT-Wired-OUI-1"
+   mac-oui 001d06
+   mac-oui 007c2d
+   mac-oui 00c3f4
+   mac-oui 04b9e3
+   mac-oui 10ffe0
+   mac-oui 14c913
+   mac-oui 201742
+   mac-oui 24fce5
+   mac-oui 3868a4
+   mac-oui 388c50
+   mac-oui 3ccd93
+   mac-oui 543ad6
+   mac-oui 5444a3
+   mac-oui 58fdb1
+   mac-oui 5cc1d7
+   mac-oui 6407f6
+   mac-oui 641cae
+   mac-oui 641cb0
+   mac-oui 64956c
+   mac-oui 64e4a5
+   mac-oui 64e7d8
+   mac-oui 6872c3
+   mac-oui 687912
+   mac-oui 68e74a
+   mac-oui 700971
+   mac-oui 702ad5
+   mac-oui 74563c
+   mac-oui accc8e
+   mac-oui b8a44f
+   mac-oui cc6ea4
+   exit
+aaa port-access local-mac mac-group "492-IoT-Wired-OUI-2"
+   mac-oui 70b13d
+   mac-oui 74e6b8
+   mac-oui 785dc8
+   mac-oui 7c0a3f
+   mac-oui 7c6456
+   mac-oui 7c646c
+   mac-oui 804786
+   mac-oui 8cea48
+   mac-oui 9c8c6e
+   mac-oui a0d05b
+   mac-oui a4307a
+   mac-oui ac5af0
+   mac-oui b03795
+   mac-oui b4b291
+   mac-oui b8bc5b
+   mac-oui bc7e8b
+   mac-oui c0238d
+   mac-oui c048e6
+   mac-oui c808e9
+   mac-oui d003df
+   mac-oui d0c24e
+   mac-oui d0d003
+   mac-oui d49dc0
+   mac-oui e85b5b
+   mac-oui f0704f
+   mac-oui f4fefb
+   mac-oui f801b4
+   mac-oui fc039f
+   exit
+aaa port-access local-mac mac-group "410-Tagged-460-Untagged"
+   mac-oui ce0000
+   mac-oui ce0097
+   mac-oui ce00a4
+   mac-oui ce00cd
+   mac-oui ce00f6
+   exit
+aaa port-access local-mac mac-group "460-BRE-Automation-OUI-1"
+   mac-oui 00620b
+   mac-oui 083a88
+   mac-oui 1c697a
+   mac-oui 2800af
+   mac-oui a83ca5
+   mac-oui c84bd6
+   mac-oui d0460c
+   mac-oui ec2a72
+   exit
+aaa port-access local-mac profile "prof-430-DMBs"
+   vlan untagged 430
+   exit
+aaa port-access local-mac profile "prof-420-HHOTs"
+   vlan untagged 420
+   exit
+aaa port-access local-mac profile "prof-410-Servers"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-410-POS-MAC-1"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-410-POS-OUI-1"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-410-POS-OUI-2"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-410-Regs-PEDS"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-490-untrusted"
+   vlan untagged 490
+   exit
+aaa port-access local-mac profile "prof-410-00028-133593"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-410-00028-227939"
+   vlan untagged 410
+   exit
+aaa port-access local-mac profile "prof-430-00028-133592"
+   vlan untagged 430
+   exit
+aaa port-access local-mac profile "prof-490-00028-133586"
+   vlan untagged 490
+   exit
+aaa port-access local-mac profile "prof-492-IoT-Wired-OUI-1"
+   vlan untagged 492
+   exit
+aaa port-access local-mac profile "prof-492-IoT-Wired-OUI-2"
+   vlan untagged 492
+   exit
+aaa port-access local-mac profile "prof-410-Tagged-460-Untagged"
+   vlan tagged 410
+   vlan untagged 460
+   exit
+aaa port-access local-mac profile "prof-460-BRE-Automation-OUI-1"
+   vlan untagged 460
+   exit
+aaa port-access local-mac apply profile "prof-430-DMBs" mac-group "430-DMBs"
+aaa port-access local-mac apply profile "prof-420-HHOTs" mac-group "420-HHOTs"
+aaa port-access local-mac apply profile "prof-410-Servers" mac-group "410-Servers"
+aaa port-access local-mac apply profile "prof-410-POS-MAC-1" mac-group "410-POS-MAC-1"
+aaa port-access local-mac apply profile "prof-410-POS-OUI-1" mac-group "410-POS-OUI-1"
+aaa port-access local-mac apply profile "prof-410-POS-OUI-2" mac-group "410-POS-OUI-2"
+aaa port-access local-mac apply profile "prof-410-Regs-PEDS" mac-group "410-Regs-PEDS"
+aaa port-access local-mac apply profile "prof-490-untrusted" mac-group "490-untrusted"
+aaa port-access local-mac apply profile "prof-410-00028-133593" mac-group "410-00028-133593"
+aaa port-access local-mac apply profile "prof-410-00028-227939" mac-group "410-00028-227939"
+aaa port-access local-mac apply profile "prof-430-00028-133592" mac-group "430-00028-133592"
+aaa port-access local-mac apply profile "prof-490-00028-133586" mac-group "490-00028-133586"
+aaa port-access local-mac apply profile "prof-492-IoT-Wired-OUI-1" mac-group "492-IoT-Wired-OUI-1"
+aaa port-access local-mac apply profile "prof-492-IoT-Wired-OUI-2" mac-group "492-IoT-Wired-OUI-2"
+aaa port-access local-mac apply profile "prof-410-Tagged-460-Untagged" mac-group "410-Tagged-460-Untagged"
+aaa port-access local-mac apply profile "prof-460-BRE-Automation-OUI-1" mac-group "460-BRE-Automation-OUI-1"
+aaa port-access local-mac 5-40
+aaa port-access local-mac 5 logoff-period 129600
+aaa port-access local-mac 5 unauth-vid 490
+aaa port-access local-mac 6 logoff-period 129600
+aaa port-access local-mac 6 unauth-vid 490
+aaa port-access local-mac 7 logoff-period 129600
+aaa port-access local-mac 7 unauth-vid 490
+aaa port-access local-mac 8 logoff-period 129600
+aaa port-access local-mac 8 unauth-vid 490
+aaa port-access local-mac 9 logoff-period 129600
+aaa port-access local-mac 9 unauth-vid 490
+aaa port-access local-mac 10 logoff-period 129600
+aaa port-access local-mac 10 unauth-vid 490
+aaa port-access local-mac 11 logoff-period 129600
+aaa port-access local-mac 11 unauth-vid 490
+aaa port-access local-mac 12 logoff-period 129600
+aaa port-access local-mac 12 unauth-vid 490
+aaa port-access local-mac 13 logoff-period 129600
+aaa port-access local-mac 13 unauth-vid 490
+aaa port-access local-mac 14 logoff-period 129600
+aaa port-access local-mac 14 unauth-vid 490
+aaa port-access local-mac 15 logoff-period 129600
+aaa port-access local-mac 15 unauth-vid 490
+aaa port-access local-mac 16 logoff-period 129600
+aaa port-access local-mac 16 unauth-vid 490
+aaa port-access local-mac 17 logoff-period 129600
+aaa port-access local-mac 17 unauth-vid 490
+aaa port-access local-mac 18 logoff-period 129600
+aaa port-access local-mac 18 unauth-vid 490
+aaa port-access local-mac 19 logoff-period 129600
+aaa port-access local-mac 19 unauth-vid 490
+aaa port-access local-mac 20 logoff-period 129600
+aaa port-access local-mac 20 unauth-vid 490
+aaa port-access local-mac 21 logoff-period 129600
+aaa port-access local-mac 21 unauth-vid 490
+aaa port-access local-mac 22 logoff-period 129600
+aaa port-access local-mac 22 unauth-vid 490
+aaa port-access local-mac 23 logoff-period 129600
+aaa port-access local-mac 23 unauth-vid 490
+aaa port-access local-mac 24 logoff-period 129600
+aaa port-access local-mac 24 unauth-vid 490
+aaa port-access local-mac 25 logoff-period 129600
+aaa port-access local-mac 25 unauth-vid 490
+aaa port-access local-mac 26 logoff-period 129600
+aaa port-access local-mac 26 unauth-vid 490
+aaa port-access local-mac 27 logoff-period 129600
+aaa port-access local-mac 27 unauth-vid 490
+aaa port-access local-mac 28 logoff-period 129600
+aaa port-access local-mac 28 unauth-vid 490
+aaa port-access local-mac 29 logoff-period 129600
+aaa port-access local-mac 29 unauth-vid 490
+aaa port-access local-mac 30 logoff-period 129600
+aaa port-access local-mac 30 unauth-vid 490
+aaa port-access local-mac 31 logoff-period 129600
+aaa port-access local-mac 31 unauth-vid 490
+aaa port-access local-mac 32 logoff-period 129600
+aaa port-access local-mac 32 unauth-vid 490
+aaa port-access local-mac 33 logoff-period 129600
+aaa port-access local-mac 33 unauth-vid 490
+aaa port-access local-mac 34 logoff-period 129600
+aaa port-access local-mac 34 unauth-vid 490
+aaa port-access local-mac 35 logoff-period 129600
+aaa port-access local-mac 35 unauth-vid 490
+aaa port-access local-mac 36 logoff-period 129600
+aaa port-access local-mac 36 unauth-vid 490
+aaa port-access local-mac 37 logoff-period 129600
+aaa port-access local-mac 37 unauth-vid 490
+aaa port-access local-mac 38 logoff-period 129600
+aaa port-access local-mac 38 unauth-vid 490
+aaa port-access local-mac 39 logoff-period 129600
+aaa port-access local-mac 39 unauth-vid 490
+aaa port-access local-mac 40 logoff-period 129600
+aaa port-access local-mac 40 unauth-vid 490
+aaa port-access 5 controlled-direction in
+aaa port-access 5 mixed
+aaa port-access 6 controlled-direction in
+aaa port-access 6 mixed
+aaa port-access 7 controlled-direction in
+aaa port-access 7 mixed
+aaa port-access 8 controlled-direction in
+aaa port-access 8 mixed
+aaa port-access 9 controlled-direction in
+aaa port-access 9 mixed
+aaa port-access 10 controlled-direction in
+aaa port-access 10 mixed
+aaa port-access 11 controlled-direction in
+aaa port-access 11 mixed
+aaa port-access 12 controlled-direction in
+aaa port-access 12 mixed
+aaa port-access 13 controlled-direction in
+aaa port-access 13 mixed
+aaa port-access 14 controlled-direction in
+aaa port-access 14 mixed
+aaa port-access 15 controlled-direction in
+aaa port-access 15 mixed
+aaa port-access 16 controlled-direction in
+aaa port-access 16 mixed
+aaa port-access 17 controlled-direction in
+aaa port-access 17 mixed
+aaa port-access 18 controlled-direction in
+aaa port-access 18 mixed
+aaa port-access 19 controlled-direction in
+aaa port-access 19 mixed
+aaa port-access 20 controlled-direction in
+aaa port-access 20 mixed
+aaa port-access 21 controlled-direction in
+aaa port-access 21 mixed
+aaa port-access 22 controlled-direction in
+aaa port-access 22 mixed
+aaa port-access 23 controlled-direction in
+aaa port-access 23 mixed
+aaa port-access 24 controlled-direction in
+aaa port-access 24 mixed
+aaa port-access 25 controlled-direction in
+aaa port-access 25 mixed
+aaa port-access 26 controlled-direction in
+aaa port-access 26 mixed
+aaa port-access 27 controlled-direction in
+aaa port-access 27 mixed
+aaa port-access 28 controlled-direction in
+aaa port-access 28 mixed
+aaa port-access 29 controlled-direction in
+aaa port-access 29 mixed
+aaa port-access 30 controlled-direction in
+aaa port-access 30 mixed
+aaa port-access 31 controlled-direction in
+aaa port-access 31 mixed
+aaa port-access 32 controlled-direction in
+aaa port-access 32 mixed
+aaa port-access 33 controlled-direction in
+aaa port-access 33 mixed
+aaa port-access 34 controlled-direction in
+aaa port-access 34 mixed
+aaa port-access 35 controlled-direction in
+aaa port-access 35 mixed
+aaa port-access 36 controlled-direction in
+aaa port-access 36 mixed
+aaa port-access 37 controlled-direction in
+aaa port-access 37 mixed
+aaa port-access 38 controlled-direction in
+aaa port-access 38 mixed
+aaa port-access 39 controlled-direction in
+aaa port-access 39 mixed
+aaa port-access 40 controlled-direction in
+aaa port-access 40 mixed
+vlan 1
+   name "Backoffice"
+   no untagged 1-4,41-45,47
+   untagged 5-40,46,48-52
+   no ip address
+   exit
+vlan 410
+   name "CORE410"
+   untagged 1-4
+   tagged 41,45
+   no ip address
+   exit
+vlan 420
+   name "RESTRICT420"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 430
+   name "MGMT-DMB430"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 450
+   name "PUBLIC450"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 451
+   name "EMPGUEST"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 460
+   name "BRE-Backoffice"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 490
+   name "UNTRUSTED490"
+   tagged 41,45
+   no ip address
+   exit
+vlan 491
+   name "BRE-Cameras"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 492
+   name "IoT Wired"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 494
+   name "IoT Wireless"
+   tagged 41-42,44-45
+   no ip address
+   exit
+vlan 4081
+   name "DSL2_4081"
+   no ip address
+   exit
+vlan 4082
+   name "CRADLEPOINT_4082"
+   untagged 43,47
+   no ip address
+   exit
+vlan 4090
+   name "MGMT4090"
+   untagged 41-42,44-45
+   ip address dhcp-bootp
+   exit
+vlan 4094
+   name "ZTP-Broadband"
+   no ip address
+   exit
+primary-vlan 4090
+device-profile name "default-ap-profile"
+   cos 0
+   exit
+copp traffic-class mac-notification limit default
+copp traffic-class broadcast limit default
+
+McD00028_SW1#
