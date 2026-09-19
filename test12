@@ -1,0 +1,1369 @@
+11158-SW-1# sh running-config 
+Current configuration:
+!
+!Version ArubaOS-CX ML.10.13.1040
+!export-password: default
+hostname 11158-SW-1
+domain-name stores.net.7-11.com
+banner motd !
+Access to this equipment and associated network, resources or data
+is restricted to those authorized by 7-Eleven, Inc. This equipment
+and related networks, resources or data may only be used for the
+business purpose of 7-Eleven, Inc.  Use by unauthorized individuals
+or for an unauthorized purpose is a violation of Federal and/or
+State law. Violators will be prosecuted.
+!
+user admin group administrators password ciphertext AQBapeiZ3zVb3uZWB4ZsRYnAY1I6hyWuyEsxaIUq8LHFJZEzYgAAAAkoL9AuLULxNByNz/J2sfFIE0N73qUfat1orHt5kcSt0tiW2RJxtvVwz4E5QwNR2mBa+5UFblQw8dNRJidn0ulcB5k15MHMSIXogMU2rS8+8KTkwztDr1S8xjIBMoyYgeN6
+clock timezone america/new_york
+ntp server 172.20.0.254 iburst
+ntp server 172.20.0.255 iburst prefer
+ntp server pool.ntp.org minpoll 4 maxpoll 4 iburst
+ntp server time.google.com iburst
+ntp enable
+cli-session
+    timeout 15
+!
+!
+!
+!
+radius-server host 172.20.26.81 key ciphertext AQBapQLeaKWSKrU+gFtRRAnVkYFe2fkZNax2eG3cbeLC05zyEAAAAIMET0wLKW7SZzUP8hXCE1Y=
+radius-server host 172.20.26.82 key ciphertext AQBapQLeaKWSKrU+gFtRRAnVkYFe2fkZNax2eG3cbeLC05zyEAAAAIMET0wLKW7SZzUP8hXCE1Y=
+radius-server host 172.20.26.83 key ciphertext AQBapQLeaKWSKrU+gFtRRAnVkYFe2fkZNax2eG3cbeLC05zyEAAAAIMET0wLKW7SZzUP8hXCE1Y=
+radius-server host 172.20.26.84 key ciphertext AQBapQLeaKWSKrU+gFtRRAnVkYFe2fkZNax2eG3cbeLC05zyEAAAAIMET0wLKW7SZzUP8hXCE1Y=
+!
+!
+aaa group server radius aaa-radius-forescout
+    server 172.20.26.81
+    server 172.20.26.82
+    server 172.20.26.83
+    server 172.20.26.84
+!
+aaa accounting port-access start-stop interim 5 group aaa-radius-forescout
+!
+logging 172.30.25.244 tcp 514
+ssh server vrf default
+ssh server vrf mgmt
+ssh key-exchange-algorithms curve25519-sha256 curve25519-sha256@libssh.org ecdh-sha2-nistp256 ecdh-sha2-nistp384 ecdh-sha2-nistp521 diffie-hellman-group-exchange-sha256 diffie-hellman-group16-sha512 diffie-hellman-group18-sha512 diffie-hellman-group14-sha256 diffie-hellman-group14-sha1
+vsf split-detect mgmt
+vsf secondary-member 2
+vsf member 1 
+    type jl727a
+    link 1 1/1/50
+    link 2 1/1/49
+vsf member 2 
+    type jl727a
+    link 1 2/1/49
+    link 2 2/1/50
+client track ip 
+vlan 1
+    ip igmp snooping enable
+vlan 10
+    name VLAN10-OPS
+    description OPS
+    client track ip 
+    ip igmp snooping enable
+vlan 12
+    name VLAN12-PCI
+    description PCI PVLAN
+    client track ip 
+    private-vlan primary
+    ip igmp snooping enable
+vlan 13
+    name VLAN13-PCI-1
+    description PCI PVLAN
+    client track ip 
+    private-vlan isolated primary-vlan 12
+vlan 16
+    name VLAN16-WIFIRIS
+    description RISMBL/RISMBL1 SSID VLAN (GOT/Scanner)
+    client track ip 
+    ip igmp snooping enable
+vlan 17
+    name VLAN17-WIFICORP
+    description Corp WiFi SSID VLAN
+    client track ip 
+    ip igmp snooping enable
+vlan 18
+    name VLAN18-WIFIPUB
+    description Public WiFi SSID VLAN
+    client track ip 
+    ip igmp snooping enable
+vlan 20
+    name VLAN20-PCI-2
+    description PCI Community VLAN
+    client track ip 
+    private-vlan community primary-vlan 12
+vlan 30
+    name VLAN30-PASSPORT
+    description Passport L2 VLAN
+    client track ip 
+    ip igmp snooping enable
+vlan 40
+    description Extranet
+    client track ip 
+    private-vlan primary
+    ip igmp snooping enable
+vlan 41
+    name VLAN41-EXTRA1
+    description Extranet PVLAN
+    client track ip 
+    private-vlan isolated primary-vlan 40
+vlan 42
+    name VLAN42-EXTRA2
+    description Extranet Community VLAN
+    client track ip 
+    private-vlan community primary-vlan 40
+vlan 43
+    name VLAN43-EXTRA3
+    description Extranet Community VLAN
+    client track ip 
+    private-vlan community primary-vlan 40
+vlan 55
+    name VLAN55-EDH
+    description EDH
+    client track ip 
+    ip igmp snooping enable
+vlan 60
+    name VLAN60-RIS-INFRA
+    description RIS Infrastructure
+    client track ip 
+    ip igmp snooping enable
+vlan 70
+    name VLAN70-DEX
+    description DEX
+    client track ip 
+    ip igmp snooping enable
+vlan 75
+    name VLAN75-AUDIOCODES
+    description AUDIOCODES
+    client track ip 
+    ip igmp snooping enable
+vlan 80
+    name VLAN80-DISPENSER
+    description DISPENSER
+    client track ip 
+    ip igmp snooping enable
+vlan 90
+    name VLAN90-CARWASH
+    description CARWASH
+    client track ip 
+    ip igmp snooping enable
+vlan 91
+    name VLAN91-CARWASH-NAT
+    description CARWASH-NAT
+    client track ip 
+    ip igmp snooping enable
+vlan 95
+    name VLAN95-QSIC
+    description QSIC
+    client track ip 
+    ip igmp snooping enable
+vlan 400
+    name VLAN400-GUEST
+    description Public Guest Devices
+    client track ip 
+    ip igmp snooping enable
+vlan 4001
+    name VLAN4001-MGMT
+    description Management Traffic (Switch/WLA)
+    client track ip 
+    ip igmp snooping enable
+spanning-tree
+spanning-tree priority 2
+spanning-tree ignore-pvid-inconsistency
+spanning-tree vlan 10,12,13,16-18,20,30,40-43,55,60,70,75,80,90,91,95,400,4001
+interface mgmt
+    no shutdown
+    ip dhcp
+port-access lldp-group aruba-ap
+     seq 20 match sys-desc IAP
+port-access role aruba-iap-role
+    description Aruba IAP
+    poe-priority high
+    trust-mode dscp
+    vlan trunk native 4001
+    vlan trunk allowed 16-18,40,42-43,4001
+port-access device-profile aruba-ap
+    enable
+    associate role aruba-iap-role
+    associate lldp-group aruba-ap
+port-access port-security enable
+aaa authentication port-access mac-auth
+    addr-format multi-colon
+    radius server-group aaa-radius-forescout
+    enable
+interface lag 1
+    description rt1
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 10,12,16-18,30,40,55,60,70,75,80,90-91,95,400,4001
+    lacp mode active
+    lacp fallback-static
+    lacp rate fast
+    private-vlan port-type promiscuous
+interface lag 2
+    description rt2
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 10,12,16-18,30,40,55,60,70,75,80,90-91,95,400,4001
+    lacp mode active
+    lacp fallback-static
+    lacp rate fast
+    private-vlan port-type promiscuous
+interface 1/1/1
+    description uplink-to-rt1
+    no shutdown
+    lag 1
+interface 1/1/2
+    description uplink-to-rt2
+    no shutdown
+    lag 2
+interface 1/1/3
+    description ISP
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/4
+    description POS1
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/5
+    description uplink-to-rt1
+    no shutdown
+    lag 1
+interface 1/1/6
+    description POS-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/7
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/8
+    description POS3
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/9
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/10
+    description POS-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/11
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/12
+    description POS5
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/13
+    description BMC
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/14
+    description DEX
+    no shutdown
+    no routing
+    vlan access 70
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/15
+    description MERAKI
+    no shutdown
+    no routing
+    vlan trunk native 10
+    vlan trunk allowed 10,80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/16
+    description BRCM1
+    no shutdown
+    no routing
+    vlan access 80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 16
+        sticky-learn enable
+interface 1/1/17
+    description BRCM2-SPARE
+    no shutdown
+    no routing
+    vlan access 80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 16
+        sticky-learn enable
+interface 1/1/18
+    description EMS-HVAC
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/19
+    description ATG
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/20
+    description ATM
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/21
+    description DMP-PANEL
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/22
+    description DVR
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/23
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/24
+    description CARWASH
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 1/1/25
+    description CARWASH
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 1/1/26
+    description CARWASH
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 1/1/27
+    description CARWASH
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 1/1/28
+    description QSIC
+    no shutdown
+    no routing
+    vlan access 95
+    spanning-tree root-guard
+    aaa authentication port-access client-limit 10
+    aaa authentication port-access mac-auth
+        reauth
+        enable
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/29
+    description TRAINING-GOT-DOCK
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/30
+    description TRAINING-GOT-DOCK-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/31
+    description GOT-DOCK
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/32
+    description HHT-DOCK
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/33
+    description SAFE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/34
+    description PRINTER
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/35
+    description IP-MOM
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/36
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/37
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/38
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/39
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 5
+        sticky-learn enable
+interface 1/1/40
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/41
+    description EXTRANET-1
+    no shutdown
+    no routing
+    vlan access 41
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/42
+    description EXTRANET-1-SPARE
+    no shutdown
+    no routing
+    vlan access 41
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/43
+    description PASSPORT
+    no shutdown
+    no routing
+    vlan access 30
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/44
+    description PASSPORT-SPARE
+    no shutdown
+    no routing
+    vlan access 30
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/45
+    description AUDIOCODES
+    shutdown
+    no routing
+    vlan access 75
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 1/1/46
+    description ZTP
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 1/1/47
+    description AP
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 16-18,40,42-43,4001
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    power-over-ethernet priority high
+interface 1/1/48
+    description AP-SPARE
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 16-18,40,42-43,4001
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    power-over-ethernet priority high
+interface 1/1/49
+    description VSF
+    no shutdown
+interface 1/1/50
+    description VSF
+    no shutdown
+interface 1/1/51
+    description NOT_IN_USE
+    no shutdown
+    no routing
+    vlan access 1
+interface 1/1/52
+    description NOT_IN_USE
+    no shutdown
+    no routing
+    vlan access 1
+interface 2/1/1
+    description uplink-to-rt1
+    no shutdown
+    lag 1
+interface 2/1/2
+    description uplink-to-rt2
+    no shutdown
+    lag 2
+interface 2/1/3
+    description ISP-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/4
+    description POS-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/5
+    description uplink-to-rt2
+    shutdown
+    lag 2
+interface 2/1/6
+    description POS2
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/7
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/8
+    description POS-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/9
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/10
+    description POS4
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/11
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/12
+    description POS-SPARE
+    no shutdown
+    no routing
+    vlan access 20
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/13
+    description BMC-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/14
+    description DEX-SPARE
+    no shutdown
+    no routing
+    vlan access 70
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/15
+    description MERAKI-SPARE
+    no shutdown
+    no routing
+    vlan trunk native 10
+    vlan trunk allowed 10,80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/16
+    description BRCM1-SPARE
+    no shutdown
+    no routing
+    vlan access 80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 16
+        sticky-learn enable
+interface 2/1/17
+    description BRCM2
+    no shutdown
+    no routing
+    vlan access 80
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 16
+        sticky-learn enable
+interface 2/1/18
+    description EMS-HVAC-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/19
+    description ATG-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/20
+    description ATM-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/21
+    description DMP-PANEL-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/22
+    description DVR-SPARE
+    no shutdown
+    no routing
+    vlan access 13
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/23
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/24
+    description CARWASH-SPARE
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 2/1/25
+    description CARWASH-SPARE
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 2/1/26
+    description CARWASH-SPARE
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 2/1/27
+    description CARWASH-SPARE
+    no shutdown
+    no routing
+    vlan access 90
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 2
+        sticky-learn enable
+interface 2/1/28
+    description QSIC
+    no shutdown
+    no routing
+    vlan access 95
+    spanning-tree root-guard
+    aaa authentication port-access client-limit 10
+    aaa authentication port-access mac-auth
+        reauth
+        enable
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/29
+    description TRAINING-GOT-DOCK-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/30
+    description TRAINING-GOT-DOCK
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/31
+    description GOT-DOCK-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/32
+    description HHT-DOCK-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/33
+    description SAFE-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/34
+    description PRINTER-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/35
+    description IP-MOM-SPARE
+    no shutdown
+    no routing
+    vlan access 60
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/36
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/37
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/38
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/39
+    description EXTRANET-2
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        client-limit 5
+        sticky-learn enable
+interface 2/1/40
+    description EXTRANET-2-SPARE
+    no shutdown
+    no routing
+    vlan access 42
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/41
+    description EXTRANET-1-SPARE
+    no shutdown
+    no routing
+    vlan access 41
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/42
+    description EXTRANET-1
+    no shutdown
+    no routing
+    vlan access 41
+    spanning-tree root-guard
+    private-vlan port-type secondary
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/43
+    description PASSPORT-SPARE
+    no shutdown
+    no routing
+    vlan access 30
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/44
+    description PASSPORT
+    no shutdown
+    no routing
+    vlan access 30
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/45
+    description AUDIOCODES-SPARE
+    shutdown
+    no routing
+    vlan access 75
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    port-access port-security
+        enable
+        sticky-learn enable
+interface 2/1/46
+    description UNUSED
+    no shutdown
+    no routing
+    vlan access 1
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+interface 2/1/47
+    description AP-SPARE
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 16-18,40,42-43,4001
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    power-over-ethernet priority high
+interface 2/1/48
+    description AP
+    no shutdown
+    no routing
+    vlan trunk native 4001
+    vlan trunk allowed 16-18,40,42-43,4001
+    spanning-tree root-guard
+    client track ip enable
+    client track ip update-interval 600
+    power-over-ethernet priority high
+interface 2/1/49
+    description VSF
+    no shutdown
+interface 2/1/50
+    description VSF
+    no shutdown
+interface 2/1/51
+    description NOT_IN_USE
+    no shutdown
+    no routing
+    vlan access 1
+interface 2/1/52
+    description NOT_IN_USE
+    no shutdown
+    no routing
+    vlan access 1
+interface vlan 1
+    ip dhcp
+interface vlan 4001
+    ip address 10.17.110.212/28
+ip route 0.0.0.0/0 10.17.110.209
+ip dns domain-list stores.net.7-11.com
+ip dns domain-list net.7-11.com
+ip dns domain-list 7-11.com
+ip dns domain-list 7-Eleven.com
+ip dns server-address 172.21.1.56
+ip dns server-address 172.22.0.56
+ip dns server-address 8.8.8.8
+!
+!
+!
+!
+!
+no https-server vrf default
+no https-server vrf mgmt
+dhcp-server vrf default
+    pool vlan_10
+        range 10.17.110.154 10.17.110.156 prefix-len 29
+        default-router 10.17.110.153
+        dns-server 10.17.110.157 10.17.110.158
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    pool vlan_12
+        range 10.17.110.20 10.17.110.24 prefix-len 25
+        default-router 10.17.110.1
+        dns-server 10.17.110.125 10.17.110.126
+        domain-name store.storesp.7-11.com
+        static-bind ip 10.17.110.20 mac 00:22:4d:b7:65:d2
+        static-bind ip 10.17.110.21 mac 00:22:4d:b7:61:2c
+        static-bind ip 10.17.110.22 mac aa:bb:cc:dd:ee:22
+        static-bind ip 10.17.110.23 mac aa:bb:cc:dd:ee:23
+        lease 01:00:00
+        exit
+    pool vlan_16
+        range 10.17.110.162 10.17.110.172 prefix-len 28
+        default-router 10.17.110.161
+        dns-server 10.17.110.173 10.17.110.174
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    pool vlan_40
+        range 10.17.110.235 10.17.110.254 prefix-len 27
+        default-router 10.17.110.225
+        dns-server 10.17.110.226 10.17.110.227
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    pool vlan_400
+        range 192.168.4.17 192.168.4.254 prefix-len 24
+        default-router 192.168.4.1
+        dns-server 8.8.8.8 1.1.1.1
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    pool vlan_60
+        range 10.17.110.185 10.17.110.188 prefix-len 28
+        default-router 10.17.110.177
+        dns-server 10.17.110.189 10.17.110.190
+        domain-name store.storesp.7-11.com
+        static-bind ip 10.17.110.179 mac 00:21:b7:db:a4:cf
+        lease 01:00:00
+        exit
+    pool vlan_70
+        range 10.17.110.203 10.17.110.204 prefix-len 29
+        default-router 10.17.110.201
+        dns-server 10.17.110.205 10.17.110.206
+        domain-name store.storesp.7-11.com
+        static-bind ip 10.17.110.204 mac aa:bb:cc:dd:ee:ff
+        lease 01:00:00
+        exit
+    pool vlan_75
+        range 10.17.110.146 10.17.110.147 prefix-len 29
+        default-router 10.17.110.145
+        dns-server 10.17.110.149 10.17.110.150
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    pool vlan_90
+        range 192.168.2.105 192.168.2.108 prefix-len 24
+        default-router 192.168.2.1
+        dns-server 192.168.2.1
+        lease 01:00:00
+        exit
+    pool vlan_95
+        range 192.168.95.5 192.168.95.254 prefix-len 24
+        default-router 192.168.95.1
+        dns-server 8.8.8.8 1.1.1.1
+        domain-name store.storesp.7-11.com
+        lease 01:00:00
+        exit
+    authoritative
+    enable
+11158-SW-1#
